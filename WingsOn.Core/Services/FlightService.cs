@@ -9,6 +9,10 @@ namespace WingsOn.Core.Services
 {
     public class FlightService : IFlightService
     {
+        public FlightService()
+        {
+        }
+
         public List<Person> GetFlightPassengers(string flightNumber)
         {
             if (String.IsNullOrEmpty(flightNumber))

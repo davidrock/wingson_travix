@@ -20,9 +20,14 @@ namespace WingsOn.Controllers
             _flightService = flightService;
         }
 
+        /// <summary>
+        /// Get all passengers of a particular flight
+        /// </summary>
+        /// <param name="number">Flight Number</param>
+        /// <returns></returns>
         [HttpGet]
-        [Route("{number}")]
-        public IActionResult Get(string number)
+        [Route("passengers/{number}")]
+        public IActionResult GetAllPassengersByFlightNumber(string number)
         {
             try
             {
