@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Linq;
 using System.Text;
+using WingsOn.Core.ViewModels;
 using WingsOn.Dal;
 using WingsOn.Domain;
 
@@ -21,6 +23,26 @@ namespace WingsOn.Core.Services
                 return p;
 
             throw new Exception("Person not found");
+        }
+
+        public List<Person> FilterPersons(PersonFilterViewModel filters)
+        {
+            if (filters.Gender == null)
+                return new List<Person>();
+
+            if (Enum.IsDefined(typeof(GenderType), filters.Gender))
+            {
+                var gender = (GenderType)filters.Gender;
+
+                var rep = new PersonRepository();
+                return rep.GetAll().Where(x => x.Gender == gender).ToList();
+            }
+            else
+            {
+                throw new Exception("Gender not recognized");
+            }
+
+
         }
     }
 }

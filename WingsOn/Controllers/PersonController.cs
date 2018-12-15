@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WingsOn.Core.Services;
+using WingsOn.Core.ViewModels;
+using WingsOn.Domain;
 
 namespace WingsOn.Controllers
 {
@@ -36,7 +38,25 @@ namespace WingsOn.Controllers
             {
                 return BadRequest(new
                 {
-                    message = e
+                    message = e.Message
+                });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Filter(PersonFilterViewModel filters)
+        {
+            try
+            {
+                var persons = _personService.FilterPersons(filters);
+
+                return new OkObjectResult(persons);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    message = e.Message
                 });
             }
         }
