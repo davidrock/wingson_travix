@@ -7,13 +7,13 @@ namespace WingsOn.Dal
 {
     public class BookingRepository : RepositoryBase<Booking>
     {
-        public BookingRepository() 
+        public BookingRepository()
         {
             PersonRepository persons = new PersonRepository();
             FlightRepository flights = new FlightRepository();
             CultureInfo cultureInfo = new CultureInfo("nl-NL");
 
-            Repository.AddRange(new []
+            Repository.AddRange(new[]
             {
                 new Booking
                 {
@@ -68,6 +68,11 @@ namespace WingsOn.Dal
                     }
                 }
             });
+        }
+
+        public Booking GetBookingByFlightId(int flightId)
+        {
+            return Repository.FirstOrDefault(x => x.Flight.Id == flightId);
         }
     }
 }

@@ -7,6 +7,6 @@ namespace WingsOn.Core.Services
 {
     public interface IFlightService
     {
-        Person GetFlightPassengers(int flightId);
+        List<Person> GetFlightPassengers(string flightId);
     }
 }

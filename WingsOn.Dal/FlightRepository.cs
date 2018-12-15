@@ -83,5 +83,10 @@ namespace WingsOn.Dal
                 }
             });
         }
+
+        public Flight GetFlightByNumber(string number)
+        {
+            return Repository.FirstOrDefault(x => x.Number.Equals(number.ToUpper()));
+        }
     }
 }

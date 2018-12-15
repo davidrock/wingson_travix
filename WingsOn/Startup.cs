@@ -28,6 +28,7 @@ namespace WingsOn
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IFlightService, FlightService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Register the Swagger generator, defining 1 or more Swagger documents

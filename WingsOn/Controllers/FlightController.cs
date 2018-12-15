@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WingsOn.Core.Services;
 
 namespace WingsOn.Controllers
 {
@@ -11,21 +12,29 @@ namespace WingsOn.Controllers
     [ApiController]
     public class FlightController : ControllerBase
     {
+
+        private readonly IFlightService _flightService;
+
+        public FlightController(IFlightService flightService)
+        {
+            _flightService = flightService;
+        }
+
         [HttpGet]
-        [Route("{id}")]
-        public IActionResult Get(int id)
+        [Route("{number}")]
+        public IActionResult Get(string number)
         {
             try
             {
-                var person = _personService.GetPersonById(id);
+                var passengers = _flightService.GetFlightPassengers(number);
 
-                return new OkObjectResult(person);
+                return new OkObjectResult(passengers);
             }
             catch (Exception e)
             {
                 return BadRequest(new
                 {
-                    message = e
+                    message = e.Message
                 });
             }
         }
