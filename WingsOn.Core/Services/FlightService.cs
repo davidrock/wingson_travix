@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using WingsOn.Dal;
 using WingsOn.Domain;
 
@@ -13,7 +14,7 @@ namespace WingsOn.Core.Services
         {
         }
 
-        public List<Person> GetFlightPassengers(string flightNumber)
+        public async Task<List<Person>> GetFlightPassengers(string flightNumber)
         {
             if (String.IsNullOrEmpty(flightNumber))
                 throw new Exception("Flight Number is required");

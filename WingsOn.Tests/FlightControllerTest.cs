@@ -22,26 +22,26 @@ namespace WingsOn.Tests
         }
 
         [Fact]
-        public void GetAllPassengersByFlightNumber_ExistingNumberPassed_ReturnOkObjectResult()
+        public async void GetAllPassengersByFlightNumber_ExistingNumberPassed_ReturnOkObjectResult()
         {
             //Arrange
             var flightNumber = "PZ696";
 
             //Act
-            var okResult = _controller.GetAllPassengersByFlightNumber(flightNumber);
+            var okResult = await _controller.GetAllPassengersByFlightNumber(flightNumber);
 
             //Assert
             Assert.IsType<OkObjectResult>(okResult);
         }
 
         [Fact]
-        public void GetAllPassengersByFlightNumber_InvalidNumberPassed_ReturnBadRequestObjectResult()
+        public async void GetAllPassengersByFlightNumber_InvalidNumberPassed_ReturnBadRequestObjectResult()
         {
             //Arrange
             var flightNumber = "";
 
             //Act
-            var badRequest = _controller.GetAllPassengersByFlightNumber(flightNumber);
+            var badRequest = await _controller.GetAllPassengersByFlightNumber(flightNumber);
 
             //Assert
             Assert.IsType<BadRequestObjectResult>(badRequest);
@@ -49,13 +49,13 @@ namespace WingsOn.Tests
 
 
         [Fact]
-        public void GetAllPassengersByFlightNumber_NonExistentNumberPassed_ReturnBadRequestObjectResult()
+        public async void GetAllPassengersByFlightNumber_NonExistentNumberPassed_ReturnBadRequestObjectResult()
         {
             //Arrange
             var flightNumber = "ZZZYYYXXX";
 
             //Act
-            var badRequest = _controller.GetAllPassengersByFlightNumber(flightNumber);
+            var badRequest = await _controller.GetAllPassengersByFlightNumber(flightNumber);
 
             //Assert
             Assert.IsType<BadRequestObjectResult>(badRequest);

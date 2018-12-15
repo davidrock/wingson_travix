@@ -27,11 +27,11 @@ namespace WingsOn.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("passengers/{number}")]
-        public IActionResult GetAllPassengersByFlightNumber(string number)
+        public async Task<IActionResult> GetAllPassengersByFlightNumber(string number)
         {
             try
             {
-                var passengers = _flightService.GetFlightPassengers(number);
+                var passengers = await _flightService.GetFlightPassengers(number);
 
                 return new OkObjectResult(passengers);
             }

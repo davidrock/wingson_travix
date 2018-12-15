@@ -26,11 +26,11 @@ namespace WingsOn.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var person = _personService.GetPersonById(id);
+                var person = await _personService.GetPersonById(id);
 
                 return new OkObjectResult(person);
             }
@@ -44,11 +44,11 @@ namespace WingsOn.Controllers
         }
 
         [HttpPost]
-        public IActionResult Filter(PersonFilterViewModel filters)
+        public async Task<IActionResult> Filter(PersonFilterViewModel filters)
         {
             try
             {
-                var persons = _personService.FilterPersons(filters);
+                var persons = await _personService.FilterPersons(filters);
 
                 return new OkObjectResult(persons);
             }

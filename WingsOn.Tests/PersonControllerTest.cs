@@ -25,35 +25,35 @@ namespace WingsOn.Tests
         }
 
         [Fact]
-        public void GetById_ExistingIdPassed_ReturnOkObjectResult()
+        public async void GetById_ExistingIdPassed_ReturnOkObjectResult()
         {
             //Arrange
             var rep = new PersonRepository();
             var personId = rep.GetAll().First().Id;
 
             //Act
-            var okResult = _controller.Get(personId);
+            var okResult = await _controller.Get(personId);
 
             //Assert
             Assert.IsType<OkObjectResult>(okResult);
         }
 
         [Fact]
-        public void GetById_NonExistentIdPassed_ReturnBadRequestObjectResult()
+        public async void GetById_NonExistentIdPassed_ReturnBadRequestObjectResult()
         {
             //Arrange
             var rep = new PersonRepository();
             var personId = rep.GetAll().Last().Id + 15000; //I hope this system is not registering more than 15k new users por millisecond
 
             //Act
-            var badRequest = _controller.Get(personId);
+            var badRequest = await _controller.Get(personId);
 
             //Assert
             Assert.IsType<BadRequestObjectResult>(badRequest);
         }
 
         [Fact]
-        public void GetAllByGender_ValidMaleGenderCodePassed_ReturnOkObjectResult()
+        public async void GetAllByGender_ValidMaleGenderCodePassed_ReturnOkObjectResult()
         {
             var filter = new PersonFilterViewModel
             {
@@ -61,14 +61,14 @@ namespace WingsOn.Tests
             };
 
             //Act
-            var oKResult = _controller.Filter(filter);
+            var oKResult = await _controller.Filter(filter);
 
             //Assert
             Assert.IsType<OkObjectResult>(oKResult);
         }
 
         [Fact]
-        public void GetAllByGender_ValidFemaleGenderCodePassed_ReturnOkObjectResult()
+        public async void GetAllByGender_ValidFemaleGenderCodePassed_ReturnOkObjectResult()
         {
             //Arrange
             var filter = new PersonFilterViewModel
@@ -77,14 +77,14 @@ namespace WingsOn.Tests
             };
 
             //Act
-            var oKResult = _controller.Filter(filter);
+            var oKResult = await _controller.Filter(filter);
 
             //Assert
             Assert.IsType<OkObjectResult>(oKResult);
         }
 
         [Fact]
-        public void GetAllByGender_InvalidGenderCodePassed_ReturnBadRequestObjectResult()
+        public async void GetAllByGender_InvalidGenderCodePassed_ReturnBadRequestObjectResult()
         {
             //Arrange
             var filter = new PersonFilterViewModel
@@ -93,7 +93,7 @@ namespace WingsOn.Tests
             };
 
             //Act
-            var result = _controller.Filter(filter);
+            var result = await _controller.Filter(filter);
 
             //Assert
             Assert.IsType<BadRequestObjectResult>(result);

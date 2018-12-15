@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using WingsOn.Core.ViewModels;
 using WingsOn.Dal;
 using WingsOn.Domain;
@@ -11,7 +12,7 @@ namespace WingsOn.Core.Services
 {
     public class PersonService : IPersonService
     {
-        public Person GetPersonById(int id)
+        public async Task<Person> GetPersonById(int id)
         {
             if (id <= 0)
                 throw new Exception("The Id param should be greater than 0");
@@ -25,7 +26,7 @@ namespace WingsOn.Core.Services
             throw new Exception("Person not found");
         }
 
-        public List<Person> FilterPersons(PersonFilterViewModel filters)
+        public async Task<List<Person>> FilterPersons(PersonFilterViewModel filters)
         {
             if (filters.Gender == null)
                 return new List<Person>();
