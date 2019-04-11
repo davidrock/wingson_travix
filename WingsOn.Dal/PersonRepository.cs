@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Globalization;
+using WingsOn.Dal.Interfaces;
 using WingsOn.Domain;
 
 namespace WingsOn.Dal
 {
-    public class PersonRepository : RepositoryBase<Person>
+    public class PersonRepository : RepositoryBase<Person>, IPersonRepository
     {
         public PersonRepository() 
         {

@@ -1,8 +1,9 @@
-﻿using WingsOn.Domain;
+﻿using WingsOn.Dal.Interfaces;
+using WingsOn.Domain;
 
 namespace WingsOn.Dal
 {
-    public class AirportRepository : RepositoryBase<Airport>
+    public class AirportRepository : RepositoryBase<Airport>, IAirportRepository
     {
         public AirportRepository()
         {

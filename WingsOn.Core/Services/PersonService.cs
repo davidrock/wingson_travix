@@ -26,17 +26,17 @@ namespace WingsOn.Core.Services
             throw new Exception("Person not found");
         }
 
-        public async Task<List<Person>> FilterPersons(PersonFilterViewModel filters)
+        public async Task<List<Person>> FilterPersons(int? gender)
         {
-            if (filters.Gender == null)
+            if (gender == null)
                 return new List<Person>();
 
-            if (Enum.IsDefined(typeof(GenderType), filters.Gender))
+            if (Enum.IsDefined(typeof(GenderType), gender))
             {
-                var gender = (GenderType)filters.Gender;
+                var g = (GenderType)gender;
 
                 var rep = new PersonRepository();
-                return rep.GetAll().Where(x => x.Gender == gender).ToList();
+                return rep.GetAll().Where(x => x.Gender == g).ToList();
             }
             else
             {

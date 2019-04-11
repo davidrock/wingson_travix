@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using WingsOn.Core.Services;
+using WingsOn.Dal;
+using WingsOn.Dal.Interfaces;
 
 namespace WingsOn
 {
@@ -29,6 +31,12 @@ namespace WingsOn
         {
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IFlightService, FlightService>();
+            services.AddScoped<IFlightRepository, FlightRepository>();
+            services.AddScoped<IAirlineRepository, AirlineRepository>();
+            services.AddScoped<IAirportRepository, AirportRepository>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IBookingRepository, BookingRepository>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Register the Swagger generator, defining 1 or more Swagger documents

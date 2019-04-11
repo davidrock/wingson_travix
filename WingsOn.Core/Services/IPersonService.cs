@@ -10,6 +10,6 @@ namespace WingsOn.Core.Services
     public interface IPersonService
     {
         Task<Person> GetPersonById(int id);
-        Task<List<Person>> FilterPersons(PersonFilterViewModel filters);
+        Task<List<Person>> FilterPersons(int? gender);
     }
 }
